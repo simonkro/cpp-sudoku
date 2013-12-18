@@ -35,18 +35,17 @@ bool solve(game_t& game, int index = 0) {
   });
 }
 
-game_t read() {
+void read(game_t& game) {
   auto valid = boost::make_filter_iterator([] (char c) {
-    return c >= '1' && c <= '9' || c == '_'; 
+    return (c >= '1' && c <= '9') || c == '_';
   }, std::istream_iterator<char>(std::cin));
 
-  game_t game;
   copy_n(valid, 81, game.begin());
-  return game;
 }
 
 int main() {
-  game_t game = read();
+  game_t game;
+  read(game);
   solve(game);
 
   for (auto it = game.begin(); it != game.end(); it += 9) {
